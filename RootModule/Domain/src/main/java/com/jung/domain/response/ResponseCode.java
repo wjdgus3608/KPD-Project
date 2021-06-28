@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum ResponseCode {
 
+    REQUEST_INFO_NOT_SATISFIED("400","요청 정보가 올바르지 않습니다."),
     ERROR("404","에러");
 
     private final String code;

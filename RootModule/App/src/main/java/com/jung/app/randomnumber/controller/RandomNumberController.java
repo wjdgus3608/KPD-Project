@@ -24,13 +24,15 @@ public class RandomNumberController {
 
     @PostMapping
     public String generateRandomNumber(@RequestBody Map<String,String> json) throws IOException {
+        checkRequestInfo(json);
         String result = generateRandomNumberConsumer.consume(json);
         LOGGER.info("result code : "+result);
         return result;
     }
 
-    @PostMapping("/error")
-    public void exceptionTest() throws Exception {
-        throw new Exception("test error");
+    private void checkRequestInfo(Map<String,String> json) throws IOException{
+        if(json.containsKey("parent-id") && json.containsKey("child-id"))
+            return;
+        throw new IOException();
     }
 }
