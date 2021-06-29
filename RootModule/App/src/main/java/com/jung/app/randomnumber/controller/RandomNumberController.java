@@ -4,12 +4,11 @@ import java.io.IOException;
 import java.util.Map;
 
 import com.jung.domain.error.CustomException;
-import com.jung.domain.error.ErrorCode;
+import com.jung.domain.error.ResponseCode;
+import com.jung.domain.error.ResponseTemplate;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,16 +25,16 @@ public class RandomNumberController {
     private GenerateRandomNumberConsumer generateRandomNumberConsumer;
 
     @PostMapping
-    public String generateRandomNumber(@RequestBody Map<String,String> json) throws IOException {
+    public ResponseEntity<ResponseTemplate> generateRandomNumber(@RequestBody Map<String,String> json) throws IOException {
         checkRequestInfo(json);
-        String result = generateRandomNumberConsumer.consume(json);
-        log.info("result code : "+result);
-        return result;
+        ResponseEntity<ResponseTemplate> response = generateRandomNumberConsumer.consume(json);
+        log.info("요청결과 : {}",response.getStatusCode());
+        return response;
     }
 
     private void checkRequestInfo(Map<String,String> json) {
         if(json.containsKey("parent-id") && json.containsKey("child-id"))
             return;
-        throw new CustomException(ErrorCode.REQUEST_INFO_INVALIDED);
+        throw new CustomException(ResponseCode.REQUEST_INFO_INVALIDED);
     }
 }
