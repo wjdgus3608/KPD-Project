@@ -50,6 +50,7 @@ subprojects {
     }
 
     dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
         implementation 'org.projectlombok:lombok:1.18.20'
     }
@@ -70,7 +71,6 @@ project(':Domain') {
 project(':Client') {
     dependencies {
         implementation project(':Common')
-        implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.kafka:spring-kafka'
     }
 }
@@ -80,7 +80,6 @@ project(':App') {
         implementation project(':Common')
         implementation project(':Client')
         implementation project(':Domain')
-        implementation 'org.springframework.boot:spring-boot-starter-web'
         //kafka
         implementation 'org.springframework.kafka:spring-kafka'
 

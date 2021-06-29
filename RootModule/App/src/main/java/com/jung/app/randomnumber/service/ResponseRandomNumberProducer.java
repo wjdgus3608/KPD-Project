@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.jung.app.randomnumber.util.RandomNumberGenerater;
 
-import com.jung.util.JsonUtil;
+import com.jung.globalutil.JsonUtil;
 
 @Service
 public class ResponseRandomNumberProducer {
