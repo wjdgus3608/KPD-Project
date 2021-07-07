@@ -89,7 +89,9 @@ project(':App') {
         //Spock
         testImplementation 'org.spockframework:spock-core:1.2-groovy-2.4'
         testImplementation 'org.spockframework:spock-spring:1.2-groovy-2.4'
-
+        //test
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'org.springframework.kafka:spring-kafka-test:2.7.3'
+
     }
 }

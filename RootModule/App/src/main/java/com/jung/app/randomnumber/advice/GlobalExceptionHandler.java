@@ -1,6 +1,6 @@
-package com.jung.app.randomnumber.util;
+package com.jung.app.randomnumber.advice;
 
-import com.jung.domain.error.CustomException;
+import com.jung.domain.error.ApiException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -10,12 +10,11 @@ import com.jung.domain.error.ResponseTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-
-@RestControllerAdvice
 @Slf4j
+@RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(CustomException.class)
-    public ResponseEntity<ResponseTemplate> handleCustomException(CustomException e) {
+    @ExceptionHandler(ApiException.class)
+    public ResponseEntity<ResponseTemplate> handleCustomException(ApiException e) {
         log.error("CustomException : {}",e.getResponseCode());
         return ResponseTemplate.toResponseEntity(e.getResponseCode());
     }
