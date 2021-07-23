@@ -2,6 +2,7 @@ package com.jung.app.randomnumber.service;
 
 import java.util.Map;
 
+import com.jung.app.randomnumber.dto.GenerateRandomNumberDTO;
 import com.jung.client.kafka.KafkaConnector;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -24,13 +25,12 @@ public class ResponseRandomNumberProducer {
     @Autowired
     private RandomNumberGenerator randomNumberGenerator;
 
-    public void produce(Map<String,String> json) {
+    public void produce(GenerateRandomNumberDTO json) {
         String randomNumber = randomNumberGenerator.generateRandomNumber();
-        json.put("randomNumber",randomNumber);
+        json.setRandomNumber(randomNumber);
 
-        String message = JsonUtil.jsonToString(json);
-        log.info("Produce message : "+message);
+        log.info("Produce message : "+json);
 
-        kafkaConnector.send(TOPIC, message);
+        kafkaConnector.send(TOPIC, json.toString());
     }
 }
