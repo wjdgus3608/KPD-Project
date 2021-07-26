@@ -17,7 +17,7 @@ subprojects {
     apply plugin: 'eclipse'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
-    apply plugin: 'groovy'
+
 
     group = 'com.jung'
     version = '0.0.0'
@@ -75,6 +75,11 @@ project(':Client') {
 }
 
 project(':App') {
+
+    test {
+        useJUnitPlatform()
+    }
+
     dependencies {
         implementation project(':Common')
         implementation project(':Client')
@@ -86,13 +91,12 @@ project(':App') {
         implementation 'org.springframework.kafka:spring-kafka'
 
         implementation 'org.springframework.boot:spring-boot-starter-webflux'
-        //Spock
-        testImplementation 'org.spockframework:spock-core:1.2-groovy-2.4'
-        testImplementation 'org.spockframework:spock-spring:1.2-groovy-2.4'
-        //test
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
-        testImplementation 'org.springframework.kafka:spring-kafka-test:2.7.3'
-        testImplementation group: 'org.springframework', name: 'spring-test', version: '5.3.7'
 
+        //test
+
+        testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.5.1'
+        testImplementation group: 'org.junit.platform', name: 'junit-platform-commons', version: '1.5.1'
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.1'
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.1'
     }
 }
