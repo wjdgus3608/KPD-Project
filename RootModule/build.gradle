@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.9.RELEASE'
+        springBootVersion = '2.5.3'
     }
     repositories {
         mavenCentral()
@@ -76,10 +76,6 @@ project(':Client') {
 
 project(':App') {
 
-    test {
-        useJUnitPlatform()
-    }
-
     dependencies {
         implementation project(':Common')
         implementation project(':Client')
@@ -92,11 +88,9 @@ project(':App') {
 
         implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
-        //test
+        implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
-        testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.5.1'
-        testImplementation group: 'org.junit.platform', name: 'junit-platform-commons', version: '1.5.1'
-        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.1'
-        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.1'
+        //test
+        testImplementation ('org.springframework.boot:spring-boot-starter-test:2.5.2')
     }
 }

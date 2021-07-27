@@ -7,7 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RandomNumberControllerTest {
     @Test
+    @DisplayName("테스트1")
     void myTest(){
+
     }
 
 }
