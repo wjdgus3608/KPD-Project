@@ -5,7 +5,7 @@ import java.util.Random;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RandomNumberGenerater {
+public class RandomNumberGenerator {
     private static final int MAX_NUMBER = 1000000;
     private static final int MIN_NUMBER = 0;
     private static final int NUMBER_LENGTH = 6;

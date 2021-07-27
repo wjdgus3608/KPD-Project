@@ -3,9 +3,14 @@ package com.jung.app.randomnumber.controller;
 import java.io.IOException;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.jung.app.randomnumber.dto.GenerateRandomNumberDTO;
+import com.jung.domain.error.ApiException;
+import com.jung.domain.error.ResponseCode;
+import com.jung.domain.error.ResponseTemplate;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,24 +18,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jung.app.randomnumber.service.GenerateRandomNumberConsumer;
 
-@RestController
-@RequestMapping("/req-randomnumber")
-public class RandomNumberController {
+import javax.validation.Valid;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RandomNumberController.class);
+@Slf4j
+@RequestMapping("/req-randomnumber")
+@RestController
+public class RandomNumberController {
 
     @Autowired
     private GenerateRandomNumberConsumer generateRandomNumberConsumer;
 
     @PostMapping
-    public String generateRandomNumber(@RequestBody Map<String,String> json) throws IOException {
-        String result = generateRandomNumberConsumer.consume(json);
-        LOGGER.info("result code : "+result);
-        return result;
+    public ResponseEntity<ResponseTemplate> generateRandomNumber(@RequestBody @Valid GenerateRandomNumberDTO json, Errors errors) {
+        if(errors.hasErrors()){
+            return ResponseTemplate.toResponseEntity(ResponseCode.REQUEST_INFO_INVALIDED);
+        }
+
+        ResponseEntity<ResponseTemplate> response = generateRandomNumberConsumer.consume(json);
+        log.info("요청결과 : {}",response.getStatusCode());
+        return response;
     }
 
-    @PostMapping("/error")
-    public void exceptionTest() throws Exception {
-        throw new Exception("test error");
-    }
 }
