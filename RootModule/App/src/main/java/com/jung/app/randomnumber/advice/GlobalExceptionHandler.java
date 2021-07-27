@@ -21,7 +21,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public Exception ExceptionAdvice(Exception e) {
-        log.error("JustException : {}",e);
+        log.error("Exception : {}",e);
         return e;
     }
 }
