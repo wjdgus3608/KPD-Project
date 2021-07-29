@@ -34,8 +34,8 @@ public class RandomNumberController {
             return ResponseTemplate.toResponseEntity(ResponseCode.REQUEST_INFO_INVALIDED);
         }
 
-//        ResponseEntity<ResponseTemplate> response = generateRandomNumberConsumer.consume(json);
-//        log.info("요청결과 : {}",response.getStatusCode());
+        ResponseEntity<ResponseTemplate> response = generateRandomNumberConsumer.consume(json);
+        log.info("요청결과 : {}",response.getStatusCode());
         return ResponseTemplate.toResponseEntity(ResponseCode.SUCCESS);
     }
 
