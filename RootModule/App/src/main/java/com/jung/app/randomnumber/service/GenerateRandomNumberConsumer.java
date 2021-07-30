@@ -3,7 +3,7 @@ package com.jung.app.randomnumber.service;
 import java.io.IOException;
 import java.util.Map;
 
-import com.jung.app.randomnumber.dto.GenerateRandomNumberDTO;
+import com.jung.domain.dto.GenerateRandomNumberDTO;
 import com.jung.domain.error.ResponseCode;
 import com.jung.domain.error.ResponseTemplate;
 import lombok.extern.slf4j.Slf4j;

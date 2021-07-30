@@ -2,8 +2,8 @@ package com.jung.app.randomnumber.service;
 
 import java.util.Map;
 
-import com.jung.app.randomnumber.dto.GenerateRandomNumberDTO;
 import com.jung.client.kafka.KafkaConnector;
+import com.jung.domain.dto.GenerateRandomNumberDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
