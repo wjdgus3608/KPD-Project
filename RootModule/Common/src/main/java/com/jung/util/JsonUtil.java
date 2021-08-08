@@ -1,4 +1,4 @@
-package com.jung.globalutil;
+package com.jung.util;
 
 import java.io.IOException;
 import java.util.Map;

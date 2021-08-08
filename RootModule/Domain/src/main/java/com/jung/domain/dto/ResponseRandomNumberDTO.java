@@ -1,4 +1,4 @@
-package com.jung.app.randomnumber.dto;
+package com.jung.domain.dto;
 
 public class ResponseRandomNumberDTO {
 }

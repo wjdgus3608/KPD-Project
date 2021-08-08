@@ -1,6 +1,5 @@
 package com.jung.app.randomnumberdb.service;
 
-import com.jung.app.randomnumber.dto.GenerateRandomNumberDTO;
 import com.jung.app.randomnumber.util.RandomNumberGenerator;
 import com.jung.client.kafka.KafkaConnector;
 import com.jung.domain.error.ResponseCode;
