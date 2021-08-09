@@ -1,9 +1,12 @@
 package com.jung.app.randomnumberdb.service;
 
-import com.jung.app.randomnumber.util.RandomNumberGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jung.client.kafka.KafkaConnector;
+import com.jung.domain.entity.RandomNumber;
 import com.jung.domain.error.ResponseCode;
 import com.jung.domain.error.ResponseTemplate;
+import com.jung.app.randomnumberdb.repository.RandomNumberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +19,19 @@ public class ResponseRandomNumberConsumer {
     private static final String TOPIC = "responseRandomNumber";
 
     @Autowired
-    KafkaConnector kafkaConnector;
+    private KafkaConnector kafkaConnector;
+
+    @Autowired
+    private RandomNumberRepository randomNumberRepository;
 
     @KafkaListener(topics = TOPIC, groupId = "responseRandomNumberGroup", concurrency = "4")
-    public ResponseEntity<ResponseTemplate> consume(String json) {
+    public ResponseEntity<ResponseTemplate> consume(String json) throws JsonProcessingException {
         log.info("Produce message : "+json);
+
+        ObjectMapper mapper = new ObjectMapper();
+        RandomNumber randomNumber = mapper.readValue(json, RandomNumber.class);
+        randomNumberRepository.save(randomNumber);
+
         return ResponseTemplate.toResponseEntity(ResponseCode.SUCCESS);
     }
 }
