@@ -67,6 +67,8 @@ project(':Domain') {
         implementation project(':Common')
         implementation 'javax.validation:validation-api:2.0.1.Final'
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.3'
+        //json 변환라이브러리
+        implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
         testImplementation 'com.h2database:h2:1.4.200'
     }
 }
@@ -92,7 +94,8 @@ project(':App') {
         implementation 'org.springframework.kafka:spring-kafka'
 
         implementation 'org.springframework.boot:spring-boot-starter-webflux'
-
+        //jpa
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.3'
 
 
         //test
