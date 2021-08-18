@@ -5,9 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jung.domain.entity.RandomNumber;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
-@Builder
+@Setter
 public class ResponseRandomNumberDTO {
     private Long id;
     private String parentId;
