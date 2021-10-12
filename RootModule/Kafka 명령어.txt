@@ -1,0 +1,12 @@
+[토픽 생성]
+kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test-topic
+[토픽 확인]
+kafka-topics.sh --list --bootstrap-server localhost:9092
+[토픽 상세]
+kafka-topics.sh --describe --bootstrap-server localhost:9092 --topic {토픽이름}
+[토픽 컨슈머 그룹 확인]
+kafka-consumer-groups.sh --bootstrap-server localhost:9092 --list 
+
+[파티션수 변경]
+kafka-topics.sh --zookeeper zookeeper:2181 --alter --topic {토픽이름} --partitions 4
+
