@@ -8,3 +8,9 @@ TODO-Project
   - 
 * 기술스택
   - Java, Spring Framework, Kafka, Docker
+
+* 할일
+  - 리팩토링
+    * 인터페이스 활용
+    * DB 연결
+    * AppConfig 만들기
