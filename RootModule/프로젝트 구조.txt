@@ -1,0 +1,6 @@
+프로젝트 구성
+KPD-Server
+- Common(util,순수자바)
+--Domain(DTO)
+--Client(DBClient,KafkaClient)
+---App(KafkaApp,서비스,컨트롤러)
