@@ -19,13 +19,13 @@ public class ResponseRandomNumberConsumer {
 
     @Autowired
     KafkaConnector kafkaConnector;
-    @Autowired
-    RandomNumberRepository randomNumberRepository;
+//    @Autowired
+//    RandomNumberRepository randomNumberRepository;
 
     @KafkaListener(topics = TOPIC, groupId = "responseRandomNumberGroup", concurrency = "4")
     public ResponseEntity<ResponseTemplate> consume(String json) {
         log.info("Produce message : "+json);
-        randomNumberRepository.save(ResponseRandomNumberDTO.jsonToEntity(json));
+        //randomNumberRepository.save(ResponseRandomNumberDTO.jsonToEntity(json));
         return ResponseTemplate.toResponseEntity(ResponseCode.SUCCESS);
     }
 }
