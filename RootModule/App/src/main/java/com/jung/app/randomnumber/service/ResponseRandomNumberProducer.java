@@ -12,12 +12,14 @@ import com.jung.app.randomnumber.util.RandomNumberGenerator;
 @Service
 public class ResponseRandomNumberProducer {
     private static final String TOPIC = "responseRandomNumber";
+    private final KafkaConnector kafkaConnector;
+    private final RandomNumberGenerator randomNumberGenerator;
 
     @Autowired
-    KafkaConnector kafkaConnector;
-
-    @Autowired
-    private RandomNumberGenerator randomNumberGenerator;
+    public ResponseRandomNumberProducer(KafkaConnector kafkaConnector, RandomNumberGenerator randomNumberGenerator){
+        this.kafkaConnector = kafkaConnector;
+        this.randomNumberGenerator = randomNumberGenerator;
+    }
 
     public void produce(GenerateRandomNumberDTO json) {
         String randomNumber = randomNumberGenerator.generateRandomNumber();

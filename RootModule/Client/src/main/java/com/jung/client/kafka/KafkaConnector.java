@@ -6,8 +6,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class KafkaConnector {
+    private final KafkaTemplate<String, String> kafkaTemplate;
+
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    public KafkaConnector(KafkaTemplate kafkaTemplate){
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
     public String send(String topic, String message) {
         kafkaTemplate.send(topic, message);

@@ -1,10 +1,6 @@
 package com.jung.app.randomnumber.controller;
 
-import java.io.IOException;
-import java.util.Map;
-
 import com.jung.domain.dto.GenerateRandomNumberDTO;
-import com.jung.domain.error.ApiException;
 import com.jung.domain.error.ResponseCode;
 import com.jung.domain.error.ResponseTemplate;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +20,12 @@ import javax.validation.Valid;
 @RequestMapping("/req-randomnumber")
 @RestController
 public class RandomNumberController {
+    private final GenerateRandomNumberConsumer generateRandomNumberConsumer;
 
     @Autowired
-    private GenerateRandomNumberConsumer generateRandomNumberConsumer;
+    public RandomNumberController(GenerateRandomNumberConsumer generateRandomNumberConsumer){
+        this.generateRandomNumberConsumer = generateRandomNumberConsumer;
+    }
 
     @PostMapping
     public ResponseEntity<ResponseTemplate> generateRandomNumber(@RequestBody @Valid GenerateRandomNumberDTO json, Errors errors) {

@@ -18,8 +18,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class GenerateRandomNumberConsumer {
 
+    private final ResponseRandomNumberProducer responseRandomNumberProducer;
+
     @Autowired
-    private ResponseRandomNumberProducer responseRandomNumberProducer;
+    public GenerateRandomNumberConsumer(ResponseRandomNumberProducer responseRandomNumberProducer){
+        this.responseRandomNumberProducer = responseRandomNumberProducer;
+    }
 
     @KafkaListener(topics = "generateRandomNumber", groupId = "generateRandomNumberGroup", concurrency = "4")
     public ResponseEntity<ResponseTemplate> consume(GenerateRandomNumberDTO json) {
